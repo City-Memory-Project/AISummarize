@@ -23,7 +23,9 @@ util.log_message("INFO", "Audio transcribed. Sending ChatGPT request to summariz
 transcription_text = util.pull_text(transcription_name)
 chatgpt_payload = "Please summarize this section of transcribed text: " + transcription_text
 transcription_summary = summarize.request_chatgpt(chatgpt_payload, api_key, max_tokens)
+transcription_summary_CN = summarize.request_chatgpt(chatgpt_payload + "in Chinese", api_key, max_tokens)
 
 util.log_message("INFO", "ChatGPT request successful. Writing to file.")
-util.write_summary_to_file(transcription_name, transcription_summary)
+util.write_summary_to_file(transcription_name, transcription_summary, "summary")
+util.write_summary_to_file(transcription_name, transcription_summary_CN, "summaryCN")
 util.log_message("INFO", "Success!")
